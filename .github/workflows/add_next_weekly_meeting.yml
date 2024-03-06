@@ -1,0 +1,26 @@
+name: Add Next Weekly Meeting
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 3'
+
+jobs:
+  create-directory-and-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          
+      - name: Install dependencies
+        run: pip install PyGithub
+          
+      - name: Add Meeting Template
+        run: python .github/scripts/add_meeting_template.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
