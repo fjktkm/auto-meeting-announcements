@@ -4,4 +4,4 @@
 
 *.md linguist-detectable=true
 
-.github/** linguist-detectable=true
+.github/**/*.py linguist-detectable=true
